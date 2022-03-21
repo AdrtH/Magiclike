@@ -85,3 +85,5 @@ On se répartit comment le travail ?
 - BDD (Lony)
 
 GitMaster = Adrien
+
+oe je teste le git oe
