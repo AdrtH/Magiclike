@@ -78,10 +78,10 @@ On se répartit comment le travail ?
  
 À répartir : 
 
-- Code
+- Code (Adrien)
 
-- Interface Graphique
+- Interface Graphique (Victor)
 
-- BDD
+- BDD (Lony)
 
 GitMaster = Adrien
