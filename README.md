@@ -67,11 +67,11 @@ Les Mairies, représentant la diplomatie, plutôt utilisé pour lancer des doctr
 
 Détail technique à voir : 
 
-JS ou Python 
+**JS** ou Python 
 
 Interface graphique 
 
-Git ou OneDrive 
+**Git** ou OneDrive 
 
 On se répartit comment le travail ? 
 
