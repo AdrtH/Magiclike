@@ -87,3 +87,4 @@ On se répartit comment le travail ?
 GitMaster = Adrien
 
 oe je teste le git oe
+**Le jeu sera donc codé pour WEB**
