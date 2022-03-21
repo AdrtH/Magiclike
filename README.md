@@ -85,3 +85,5 @@ On se répartit comment le travail ?
 - BDD (Lony)
 
 GitMaster = Adrien
+
+**Le jeu sera donc codé pour WEB**
