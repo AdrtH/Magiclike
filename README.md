@@ -15,23 +15,23 @@ magiclike, un jeu comme magic, mais en un joueur
 
 
 
-Ce jeu serait un jeu de cartes à la TCG en plus modeste bien sûr, la particularité de celui-ci serait que, comparer à beaucoup d’autre où plusieurs joueurs sont requis, qui, quand on n'a pas d’amis peut être contraignant, ici le jeu est conçu pour un seul joueur. 
+Ce jeu serait un jeu de cartes à la TCG en plus modeste bien sûr, la particularité de celui-ci serait que, comparé à beaucoup d’autres où plusieurs joueurs sont requis, ici le jeu est conçu pour un seul joueur. 
 
 Ce jeu ressemblerait à ce qu’on pourrait trouver dans Magic The Gathering, des cartes de terrains, des cartes de sorts, de créatures. A l’exception que contrairement à Magic qui s’inspire beaucoup de mythes et légendes dans différentes cultures (On peut y retrouver des références à la culture Nippon, la mythologie nordique, ou encore des comptes occidentaux comme Robin des Bois), ici le Lore du jeu se basera sur des évènements Historique (d’où le nom bien évidemment). 
 
-Le joueur incarne un dirigeant chacun d’entre eux ayant des particularités (semblables aux héros dans Hearthstone), Les cartes de terrains de Magic (qui permettent de générer du mana d’une couleur spécifique) serait remplacés par des cartes de Bâtiments, qui génère des “ressources”, équivalent du mana dans différents TCG, et chacun des différents types de bâtiments peut avoir différentes propriétés (ça pas sur faut en débattre). Toujours contrairement à Magic où les decks ne sont rarement à + de 2 couleurs là les bâtiments devraient être plus variés. Effectivement imaginons une ressource “eau”, une “diplomatie”, une “nourriture”, on voit mal un gouvernement ne pas apporter de nourriture ou d’eau à son peuple, cependant un deck est totalement libre de comporter autant de chacune des ressources, même s’il est déconseillé d’avoir trop de déséquilibre (on peut ne pas s’embêter et faire que les decks soient préconstruit comme ça pas besoin de s’occuper d’un deck Builder ou quoi, ça simplifie).  
+Le joueur incarne un dirigeant chacun d’entre eux ayant des particularités (semblables aux héros dans Hearthstone), Les cartes de terrains de Magic (qui permettent de générer du mana d’une couleur spécifique) serait remplacés par des cartes de Bâtiments, qui génère des “ressources”, équivalent du mana dans différents TCG. Toujours contrairement à Magic où les decks ne sont rarement à + de 2 couleurs là les bâtiments devraient être plus variés. Effectivement imaginons une ressource “eau”, une “diplomatie”, une “nourriture”, on voit mal un gouvernement ne pas apporter de nourriture ou d’eau à son peuple, cependant un deck est totalement libre de comporter autant de chacune des ressources, même s’il est déconseillé d’avoir trop de déséquilibre (on peut ne pas s’embêter et faire que les decks soient préconstruit comme ça pas besoin de s’occuper d’un deck Builder ou quoi, ça simplifie).  
 
-Les sorts peuvent s’appeler “doctrines” je ne sais pas je trouve ça drôle imagine une carte de doctrine qui s’appelle “Au goulag !” par exemple. 
+Les sorts peuvent s’appeler “doctrines”. 
 
-Les créatures peuvent etre appelés “Députés”, ils pourraient avoir des effets statiques genre “x2 de production” ou des conneries du genre, un cout de nourritures par tour “ si n’a pas assez bah il disparait, et quand ils arrivent sur le champs de bataille donne un certains nombre de tours en plus 
+Les créatures peuvent etre appelés “Députés”, ils pourraient avoir des effets statiques comme “x2 de production”, un cout de nourritures par tour, s'il n’a pas assez il disparait, et quand ils arrivent sur le champs de bataille donne un certains nombre de tours en plus 
 
 Venons-en au plus important, le jeu est un TCG 1 joueurs, mais comment est-ce possible ? 
 
-Le joueur comme sus dit, incarne un dirigeant d’un pays, celui-ci donc des projets son “programme” qui est représenté par son Deck, s’il arrive a appliqué toutes ses mesures (jouer toutes ses cartes) le dirigeant a donc fini son programme et à gagner, Le but du joueur est donc de vider son deck contrairement aux autres TCG ou vider son deck est souvent synonyme de partie perdu.  
+Le joueur comme sus dit, incarne un dirigeant d’un pays, celui-ci a donc des projets, son “programme” qui est représenté par son Deck, s’il arrive a appliquer toutes ses mesures (jouer toutes ses cartes) le dirigeant a donc fini son programme et a gagné, Le but du joueur est donc de vider son deck contrairement aux autres TCG ou vider son deck est souvent synonyme de partie perdu.  
 
 Quels sont alors les obstacles rencontrés par le joueur ? 
 
-Premièrement, il est limité en temps, il n’a qu’un nombre limité de tours pour accomplir son programme, il peut bien sur soit choisir de rusher et vidé son deck le plus vite, ou alors utiliser des cartes qui lui allonge son nombre de tours (on peut imaginer que l’équivalent des créatures peuvent alors “attaquer” pour allonger le nombre de tours)
+Premièrement, il est limité en temps, il n’a qu’un nombre limité de tours pour accomplir son programme, il peut bien sur soit choisir de rusher et vider son deck le plus vite, ou alors utiliser des cartes qui lui allonge son nombre de tours.
 
 En tant qu’obstacle il y aurait aussi des événements aléatoires pour éviter des parties trop redondantes et permettre des rebondissements, on peut imaginer une manifestation, qui désactive certains terrains pendant quelques tours, des révoltes qui baissent le nombre de tours disponible etc... 
 
@@ -72,9 +72,6 @@ JS ou Python -> **JS**
 Interface graphique -> **CSS, HTML, etc**
 
 Git ou OneDrive -> **Git**
-
-On se répartit comment le travail ? 
-
  
 À répartir : 
 
@@ -86,5 +83,4 @@ On se répartit comment le travail ?
 
 GitMaster = Adrien
 
-oe je teste le git oe
 **Le jeu sera donc codé pour WEB**
