@@ -31,7 +31,7 @@ Le joueur comme sus dit, incarne un dirigeant d’un pays, celui-ci donc des pro
 
 Quels sont alors les obstacles rencontrés par le joueur ? 
 
-Premièrement, il est limité en temps, il n’a qu’un nombre limité de tours pour accomplir son programme, il peut bien sur soit choisir de rusher et vidé son deck le plus vite, ou alors utiliser des cartes qui lui allonge son nombre de tours (on peut imaginer que l’équivalent des créatures peuvent alors “attaquer” pour allonger le nombre de tours (enft non quand ils arrivent ils rajoutent des tours c’est plus logique et moins pété)) 
+Premièrement, il est limité en temps, il n’a qu’un nombre limité de tours pour accomplir son programme, il peut bien sur soit choisir de rusher et vidé son deck le plus vite, ou alors utiliser des cartes qui lui allonge son nombre de tours (on peut imaginer que l’équivalent des créatures peuvent alors “attaquer” pour allonger le nombre de tours)
 
 En tant qu’obstacle il y aurait aussi des événements aléatoires pour éviter des parties trop redondantes et permettre des rebondissements, on peut imaginer une manifestation, qui désactive certains terrains pendant quelques tours, des révoltes qui baissent le nombre de tours disponible etc... 
 
