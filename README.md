@@ -53,15 +53,15 @@ En tant qu’obstacle il y aurait aussi des événements aléatoires pour évite
 
 Gameplay :  
 
-Le joueur a un deck composé de cartes, environ 20 sont des bâtiments, le reste dépendra du type de decks. 
+Le joueur a un deck composé de cartes, environ 20 sont des bâtiments, le reste dépendra du type de decks.
 
-Il y a X Types de Bâtiments et donc de ressources :  
+Il y a X Types de Bâtiments et donc de ressources :
 
-Les Fermes, représentant l’accès à l’eau potable et la nourriture, celle-ci serait plutôt utilisé pour les cartes de Députés. 
+Les Fermes, représentant l’accès à l’eau potable et la nourriture, celle-ci serait plutôt utilisé pour les cartes de Députés.
 
-Les Usines, représentant la productivité du pays, l’accès à l’emploi, permettant plutôt la possibilité de poser + de bâtiments par tour. 
+Les Usines, représentant la productivité du pays, l’accès à l’emploi, permettant plutôt la possibilité de poser + de bâtiments par tour.
 
-Les Mairies, représentant la diplomatie, plutôt utilisé pour lancer des doctrines, et réduisant les événements aléatoires. 
+Les Mairies, représentant la diplomatie, plutôt utilisé pour lancer des doctrines, et réduisant les événements aléatoires.
 
  
 
