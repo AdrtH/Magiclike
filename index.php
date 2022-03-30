@@ -14,7 +14,7 @@
     </form>
     <script>
         for (let index = 0; index < 27; index++) {
-            document.getElementById("Form").innerHTML += ("<input type='radio' name='Deck'>Deck "+(1+index)+"</input><br>");
+            document.getElementById("Form").innerHTML += ("<input type='radio' value='"+index+"'name='Deck'>Deck "+(1+index)+"</input><br>");
         }
         document.getElementById("Form").innerHTML += ("<input type='submit' value='JOUER !!'>");
     </script>

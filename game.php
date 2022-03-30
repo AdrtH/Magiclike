@@ -10,6 +10,9 @@
 <body>
     <?php
         echo "<p>lol ".$_POST['Deck']."</p>";
+
+
+
     ?>
 </body>
 </html>
