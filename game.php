@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        echo "<p>lol ".$_POST['Deck']."</p>";
+        echo "<p>deck ".$_POST['Deck']."</p>";
 
 
 
