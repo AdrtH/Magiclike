@@ -18,5 +18,9 @@
         }
         document.getElementById("Form").innerHTML += ("<input type='submit' value='JOUER !!'>");
     </script>
+    <br>
+    <a href="phpinsert.php">
+      <button>Debug</button>
+    </a>
 </body>
 </html>
