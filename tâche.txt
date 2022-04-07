@@ -1,0 +1,11 @@
+lony   :
+	- Creation de la database
+	- Insertion dans la database des différentes cartes
+Adrien :
+	- Récupération des cartes sur la database
+	- Gérer les tours dans le jeu
+	- Logique du jeu
+	- Creation des cartes
+Victor :
+	- Interface Basique
+	- Creation des cartes avec recherche historique
