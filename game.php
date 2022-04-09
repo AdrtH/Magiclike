@@ -27,7 +27,7 @@
 
     <!-- fait la passerelle entre le jeu en js et la db en php -->
     <script type="text/javascript"> 
-        let deck = <?php echo json_encode();?>;
+        let deck = <?php echo json_encode($test);?>;
     </script>
 
 
