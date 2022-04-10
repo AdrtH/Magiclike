@@ -47,7 +47,7 @@
 		$deck_deckid = $_POST['deckdeck'];
 
 		// pour communiquer avec la database en question
-		$servername = "localhost";
+		$servername = "drimtim.wstr.fr";
 		$username = "drimtim";
 		$password = "!drimtim6969#";
 		$dbname = "hystoric";

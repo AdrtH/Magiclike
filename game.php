@@ -14,23 +14,58 @@
         $servername = "drimtim.wstr.fr";
         $username   = "drimtim";
         $password   = "!drimtim6969#";
+        $dbname     = "hystoric";
         $test       = "oui";
 
         // CONNECT TO DB
-        $con = new mysqli($servername, $username, $password);
+        $con = new mysqli($servername, $username, $password, $dbname);
         if ($con->connect_error) {
             die("Erreur lors de la connexion à la base de données: " . $con->connect_error);
         }
+
+        //crée une fonction qui permet d'executer une requête
+        function sql_query($con,$sql) {
+            $result = $con->query($sql);
+            if (!$result) {
+                die("Erreur lors de l'exécution de la requête: " . $con->error);
+            }
+            return $result;
+        }
+
+        // crée une requete sql pour connaitre le nombre de decks dans la base de données
+        $query = "SELECT COUNT(*) as c FROM `deck`";
+
+        // execute la requete avec la fonction sql_query
+        $result  = sql_query($con,$query);
+        $nbDecks = $result->fetch_assoc()['c'];
+
+        if (!($_POST['Deck'] >= 0 && $_POST['Deck'] < $nbDecks)) {
+            echo $nbDecks;
+            die("Erreur lors du choix du deck, celui ci n'existe pas: Deck ".$_POST['Deck']);
+        }
+
+        // crée une boucle qui va parcourir toutes les appartencances de carte dans le deck choisi
+        $query = "SELECT carte.card_id as id, carte.name as name, carte.cost as cost, carte.description as descr
+                  FROM carte
+                  INNER JOIN app_carte as app 
+                  ON carte.card_id = app.card_id
+                  WHERE app.deck_id = {$_POST['Deck']};";
+
+        // execute la requete avec la fonction sql_query
+        $result = sql_query($con,$query);
+        //fetch all the rows in the result set
+        $tab = $result->fetch_all(MYSQLI_ASSOC);
+
     ?>
 
     <p name="print"></p>
 
+    <div class="player-hand"></div>
+
     <!-- fait la passerelle entre le jeu en js et la db en php -->
     <script type="text/javascript"> 
-        let deck = <?php echo json_encode($test);?>;
+        let deck = <?php echo json_encode($tab);?>;
     </script>
-
-
 
     <script src="scripts/game.js"></script>
 </body>
