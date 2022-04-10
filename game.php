@@ -12,7 +12,7 @@
         echo "<p>deck ".$_POST['Deck']."</p>";
 
         $servername = "drimtim.wstr.fr";
-        $username   = "drim";
+        $username   = "drimtim";
         $password   = "!drimtim6969#";
         $test       = "oui";
 
