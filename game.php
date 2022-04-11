@@ -58,15 +58,17 @@
 
     ?>
 
-    <p name="print"></p>
+    <p id="print"></p>
+    <div id="Board"></div>
+    <div id="player-hand"></div>
+    <div id="Remaining-Turns"></div>
+    <div id='Remaining-Deck'></div>
+    <button id="nextTurn" onclick="turn()">Tour Suivant</button>
 
-    <div class="player-hand"></div>
-
-    <!-- fait la passerelle entre le jeu en js et la db en php -->
+    <!--- fait la passerelle entre le jeu en js et la db en php -->
     <script type="text/javascript"> 
         let deck = <?php echo json_encode($tab);?>;
     </script>
-
     <script src="scripts/game.js"></script>
 </body>
 </html>
