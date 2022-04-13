@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        echo "<p>deck ".$_POST['Deck']."</p>";
+        //echo "<p>deck ".$_POST['Deck']."</p>";
 
         $servername = "drimtim.wstr.fr";
         $username   = "drimtim";
@@ -40,7 +40,7 @@
         $nbDecks = $result->fetch_assoc()['c'];
 
         if (!($_POST['Deck'] >= 0 && $_POST['Deck'] < $nbDecks)) {
-            echo $nbDecks;
+            // echo $nbDecks;
             die("Erreur lors du choix du deck, celui ci n'existe pas: Deck ".$_POST['Deck']);
         }
 
@@ -59,10 +59,17 @@
     ?>
 
     <p id="print"></p>
-    <div id="Board"></div>
+    <div id="Board">
+        <p>Vos Députés :</p>
+        <div id="Deputies"></div>
+        <p>Vos Batiments :</p>
+        <div id="Buildings"></div>
+    </div>
+    <p>Votre main :</p>
     <div id="player-hand"></div>
-    <div id="remainingTurn">Il vous reste 40 tours</div>
+    <br>
     <div id='remainingDeck'></div>
+    <div id="remainingTurn">Il vous reste 40 tours</div>
     <button id="nextTurn" onclick="turn()">Tour Suivant</button>
 
     <!--- fait la passerelle entre le jeu en js et la db en php -->
