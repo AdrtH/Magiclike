@@ -61,8 +61,8 @@
     <p id="print"></p>
     <div id="Board"></div>
     <div id="player-hand"></div>
-    <div id="Remaining-Turns"></div>
-    <div id='Remaining-Deck'></div>
+    <div id="remainingTurn">Il vous reste 40 tours</div>
+    <div id='remainingDeck'></div>
     <button id="nextTurn" onclick="turn()">Tour Suivant</button>
 
     <!--- fait la passerelle entre le jeu en js et la db en php -->
