@@ -8,6 +8,8 @@
     height: 300px;
     background: url(handBG.jpg);
     color:rgb(255, 214, 163);
+
+    border-top: 2px solid black;
 }
 .card
 {
