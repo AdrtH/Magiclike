@@ -66,8 +66,7 @@
         <p>Vos Batiments :</p>
         <div id="Buildings"></div>
     </div>
-    <p>Votre main :</p>
-    <div id="player-hand"></div>
+    <div id="player-hand">Votre main :</div>
     <br>
     <div id='remainingDeck'></div>
     <div id="remainingTurn">Il vous reste 40 tours</div>
