@@ -61,10 +61,8 @@
 
     <p id="print"></p>
     <div id="Board">
-        <p>Vos Députés :</p>
-        <div id="Deputies"></div>
-        <p>Vos Batiments :</p>
-        <div id="Buildings"></div>
+        <div id="Deputies">Vos Députés :</div>
+        <div id="Buildings">Vos Batiments :</div>
     </div>
     <div id="player-hand">Votre main :</div>
     <br>
