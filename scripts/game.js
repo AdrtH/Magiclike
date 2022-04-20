@@ -314,4 +314,5 @@ function turn() {
 
 initialiseHand();
 
+// TODO: fix description bug when hovering over card (undefined)
 // document.getElementById("print").innerHTML = '<h1>Hello World</h1>';
