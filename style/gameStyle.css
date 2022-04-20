@@ -88,3 +88,21 @@
     text-align: center;
     text-shadow: 3px 3px 3px gray;
 }
+
+.building
+{
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+    width: 110px;
+    height: 200px;
+
+    border: 2px solid black;
+
+    box-shadow: 3px 3px 3px black;
+
+    background-color: brown;
+    color: black;
+
+}
