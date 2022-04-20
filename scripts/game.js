@@ -119,14 +119,15 @@ function refreshBoard() {
     // on commence par vider le tableau
     document.getElementById("Board").innerHTML = "";
     // on affiche les députés
-    document.getElementById("Board").innerHTML += "<div class='Deputies' id='Deputies'></div>";
+    document.getElementById("Board").innerHTML += "<div class='Deputies' id='Deputies'><p>Vos Députés :</p></div>";
     for (let i = 0; i < window.playerDeputies.length; i++) {
         document.getElementById("Deputies").innerHTML += "<div class='deputy' id='deputy"+i+"' onClick='useDeputy("+i+")'></div>";
     }
     // on affiche les batiments
-    document.getElementById("Board").innerHTML += "<div class='Buildings' id='Buildings'></div>";
-    for (let i = 0; i < window.playerBuildingsProd.length; i++) {
-        document.getElementById("Buildings").innerHTML += "<div class='building' id='building"+i+"'></div>";
+    document.getElementById("Board").innerHTML += "<div class='Buildings' id='Buildings'><p>Vos Batiments :</p></div>";
+    for (let i = 0; i < window.playerBuildings.length; i++) {
+        document.getElementById("Buildings").innerHTML += "<div class='building' id='building"+i+"'>"+window.playerBuildings[i]['name'] + ' (' + window.playerBuildings[i]['cost'] + ')'+"</div>";
+        document.getElementById("building"+i).setAttribute("title", window.playerBuildings[i]['descr']);
     }
 }
 
@@ -168,7 +169,7 @@ function refreshPlayerHand() {
         // on affiche le nom de le cout de la carte et son nom
         card.innerHTML = (window.playerHand[i]['name'] + ' (' + window.playerHand[i]['cost'] + ')');
         // on affiche la descrpition de la carte au survol
-        card.setAttribute('title', window.playerHand[i]['desc']);
+        card.setAttribute('title', window.playerHand[i]['descr']);
         // on ajoute la carte à la div
         document.getElementById('player-hand').appendChild(card);
     }
@@ -177,52 +178,64 @@ function refreshPlayerHand() {
 function playCard(index) {
     // TODO: verifier que le joueur peut bien jouer la carte en fonction de son coût (créer fonction payCost)
     // on récupère la carte à jouer et on l'instancie avec la classe Card
-    let card = new Card(window.playerHand[index]['name'], window.playerHand[index]['type'], window.playerHand[index]['cost'], window.playerHand[index]['desc'], window.playerHand[index]['onPlay'], window.playerHand[index]['eachTurn'], window.playerHand[index]['onTap'], window.playerHand[index]['onDie']);
+    let card = new Card(window.playerHand[index]['name'], window.playerHand[index]['type'], window.playerHand[index]['cost'], window.playerHand[index]['descr'], window.playerHand[index]['onPlay'], window.playerHand[index]['eachTurn'], window.playerHand[index]['onTap'], window.playerHand[index]['onDie']);
+    let played = false;
     // si c'est un batiment
-    if (card.type === BUILDING_PROD) {
+    if (card.type == BUILDING_PROD) {
         // on ajoute la carte au tableau des batiments du joueur
         if (window.buildingFree) {
             window.buildingFree = false;
             window.playerBuildingsProd.push(card);
+            played = true;
         } else {
             if (payCost(card.cost)) {
                 window.playerBuildingsProd.push(card);
+                played = true;
             }
         }
     }
-    if (card.type === BUILDING_DIP) {
+    if (card.type == BUILDING_DIP) {
         // on ajoute la carte au tableau des batiments du joueur
         if (window.buildingFree) {
             window.buildingFree = false;
             window.playerBuildingsDip.push(card);
+            played = true;
         } else {
             if (payCost(card.cost)) {
                 window.playerBuildingsDip.push(card);
+                played = true;
             }
         }
     }
-    if (card.type === BUILDING_FOOD) {
+    if (card.type == BUILDING_FOOD) {
         // on ajoute la carte au tableau des batiments du joueur
         if (window.buildingFree) {
             window.buildingFree = false;
             window.playerBuildingsFood.push(card);
+            played = true;
         } else {
             if (payCost(card.cost)) {
                 window.playerBuildingsFood.push(card);
+                played = true;
             }
         }
     }
-    if (card.type === DEPUTIES) {
+    if (card.type == DEPUTIES) {
         // on ajoute le deputés à la liste des députés du joueur
         window.playerDeputies.push(card);
+        played = true;
     }
-    if (card.type === DOCTRINE) {
+    if (card.type == DOCTRINE) {
         // on ajoute la doctrine à la liste des doctrines du joueur
         card.onPlay();
+        played = true;
     }
     // on enlève la carte de la main du joueur
-    window.playerHand.splice(index, 1);
+    if (played) {
+        window.playerHand.splice(index, 1);
+    }
     // on rafraichit la main du joueur
+    window.playerBuildings = window.playerBuildingsProd.concat(window.playerBuildingsDip, window.playerBuildingsFood);
     refreshBoard();
     refreshPlayerHand();
 }
@@ -260,7 +273,7 @@ function discard(index) {
     refreshPlayerHand();
 }
 
-// change le onClick des cartes pour "Discard"
+// change le onClick des cartes pour "discard()"
 function discardCard() {
     document.getElementById('player-hand').empty();
     for (let i = 0; i < window.playerHand.length; i++) {
@@ -268,7 +281,7 @@ function discardCard() {
         card.classList.add('card');
         card.setAttribute("onclick","discard("+i+")");
         card.html(window.playerHand[i]['name'] + ' (' + window.playerHand[i]['cost'] + ')');
-        card.attr('title', window.playerHand[i]['desc']);
+        card.attr('title', window.playerHand[i]['descr']);
         document.getElementById('player-hand').appendChild(card);
     }
 }
@@ -314,5 +327,6 @@ function turn() {
 
 initialiseHand();
 
-// TODO: fix description bug when hovering over card (undefined)
+// TODO : faire une fonction qui permet de faire jouer les députés
+// TODO : fix le bug de la carte qui n'a pu de description une fois qu'elle a été jouée
 // document.getElementById("print").innerHTML = '<h1>Hello World</h1>';
