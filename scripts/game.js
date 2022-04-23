@@ -1,12 +1,12 @@
 
-// initialiser la partie
+// initialisation des constantes
 const DEFAULT_TURN  = 40;
 const DEPUTIES      = 0;
 const DOCTRINE      = 1;
 const BUILDING_PROD = -2;
 const BUILDING_FOOD = -1;
 const BUILDING_DIP  = -3;
-// il n'y a pas de de let pour que les variables soient globales
+// variables globales
 var currentTurnAvailable = DEFAULT_TURN;
 var buildingFree;
 var playerBuildings      = [];
@@ -16,7 +16,8 @@ var playerBuildingsFood  = [];
 var playerDeputies       = [];
 var playerHand = [];
 
-
+// cette classe permet de créer les cartes UNE FOIS EN JEU
+// tant qu'elles sont dans la main ce sont juste des "listes"
 class Card {
     constructor(name, type, cost, description, onPlay, eachTurn, onTap, onDie) {
         this.name = name;
@@ -81,7 +82,7 @@ function payCost(card) {
         else {
             let index = 0;
             while (card.cost > 0) {
-                if (window.playerBuildingsFood[index].tapped === false) {
+                if (window.playerBuildingsFood[index].tapped == false) {
                     window.playerBuildingsFood[index].tap();
                     card.cost --;
                     index ++;
@@ -99,7 +100,7 @@ function payCost(card) {
         else {
             let index = 0;
             while (card.cost > 0) {
-                if (window.playerBuildingsDip[index].tapped === false) {
+                if (window.playerBuildingsDip[index].tapped == false) {
                     window.playerBuildingsDip[index].tap();
                     card.cost --;
                     index ++;
@@ -113,7 +114,14 @@ function payCost(card) {
     }
 }
 
-function useDeputy(index) {}
+function useDeputy(index) {
+    if (window.playerDeputies[index].onTap()){
+        window.playerDeputies[index].tap();
+        refreshBoard();
+        return true;
+    }
+    return false;
+}
 
 
 function refreshBoard() {
@@ -306,6 +314,7 @@ function turn() {
         document.getElementById("next-turn").disabled = false;
     }
     refreshRemainingTurn();
+    untapCards();
     // playersBuildings est un tableau qui contient tout les types de batiments du joueur
     window.playerBuildings = window.playerBuildingsProd.concat(window.playerBuildingsDip, window.playerBuildingsFood);
     
@@ -329,5 +338,4 @@ function turn() {
 
 initialiseHand();
 
-// TODO : faire une fonction qui permet de faire jouer les députés
 // document.getElementById("print").innerHTML = '<h1>Hello World</h1>';
