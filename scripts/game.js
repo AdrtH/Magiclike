@@ -1,12 +1,12 @@
 
-// initialiser la partie
+// initialisation des constantes
 const DEFAULT_TURN  = 40;
 const DEPUTIES      = 0;
 const DOCTRINE      = 1;
-const BUILDING_PROD = -1;
-const BUILDING_FOOD = -2;
+const BUILDING_PROD = -2;
+const BUILDING_FOOD = -1;
 const BUILDING_DIP  = -3;
-// il n'y a pas de de let pour que les variables soient globales
+// variables globales
 var currentTurnAvailable = DEFAULT_TURN;
 var buildingFree;
 var playerBuildings      = [];
@@ -16,7 +16,8 @@ var playerBuildingsFood  = [];
 var playerDeputies       = [];
 var playerHand = [];
 
-
+// cette classe permet de créer les cartes UNE FOIS EN JEU
+// tant qu'elles sont dans la main ce sont juste des "listes"
 class Card {
     constructor(name, type, cost, description, onPlay, eachTurn, onTap, onDie) {
         this.name = name;
@@ -55,6 +56,7 @@ function payCost(card) {
     if (card.type < DEPUTIES) {
         if (window.buildingFree) {
             card.cost --;
+            return true;
         }
         if (floor(window.playerBuildingsProd.length/3) < card.cost) {
             return false;
@@ -80,7 +82,7 @@ function payCost(card) {
         else {
             let index = 0;
             while (card.cost > 0) {
-                if (window.playerBuildingsFood[index].tapped === false) {
+                if (window.playerBuildingsFood[index].tapped == false) {
                     window.playerBuildingsFood[index].tap();
                     card.cost --;
                     index ++;
@@ -98,7 +100,7 @@ function payCost(card) {
         else {
             let index = 0;
             while (card.cost > 0) {
-                if (window.playerBuildingsDip[index].tapped === false) {
+                if (window.playerBuildingsDip[index].tapped == false) {
                     window.playerBuildingsDip[index].tap();
                     card.cost --;
                     index ++;
@@ -112,7 +114,14 @@ function payCost(card) {
     }
 }
 
-function useDeputy(index) {}
+function useDeputy(index) {
+    if (window.playerDeputies[index].onTap()){
+        window.playerDeputies[index].tap();
+        refreshBoard();
+        return true;
+    }
+    return false;
+}
 
 
 function refreshBoard() {
@@ -122,12 +131,14 @@ function refreshBoard() {
     document.getElementById("Board").innerHTML += "<div class='Deputies' id='Deputies'><p>Vos Députés :</p></div>";
     for (let i = 0; i < window.playerDeputies.length; i++) {
         document.getElementById("Deputies").innerHTML += "<div class='deputy' id='deputy"+i+"' onClick='useDeputy("+i+")'></div>";
+        document.getElementById("deputy"+i).innerHTML = "<p>"+window.playerDeputies[i].name+ '('+ window.playerDeputies[i].cost+')'+"</p>";
+        document.getElementById("deputy"+i).setAttribute("title", window.playerDeputies[i].description);
     }
     // on affiche les batiments
     document.getElementById("Board").innerHTML += "<div class='Buildings' id='Buildings'><p>Vos Batiments :</p></div>";
     for (let i = 0; i < window.playerBuildings.length; i++) {
         document.getElementById("Buildings").innerHTML += "<div class='building' id='building"+i+"'>"+window.playerBuildings[i]['name'] + ' (' + window.playerBuildings[i]['cost'] + ')'+"</div>";
-        document.getElementById("building"+i).setAttribute("title", window.playerBuildings[i]['descr']);
+        document.getElementById("building"+i).setAttribute("title", window.playerBuildings[i]['description']);
     }
 }
 
@@ -234,8 +245,8 @@ function playCard(index) {
     if (played) {
         window.playerHand.splice(index, 1);
     }
-    // on rafraichit la main du joueur
     window.playerBuildings = window.playerBuildingsProd.concat(window.playerBuildingsDip, window.playerBuildingsFood);
+    // on rafraichit la main du joueur
     refreshBoard();
     refreshPlayerHand();
 }
@@ -297,17 +308,17 @@ function turn() {
             while(pH === window.playerHand) { // force le joueur à retirer une carte à la fois
                 discardCard(window.playerHand, window.shuffleDeck);
             }
-            currentTurnAvailable --;
+            window.currentTurnAvailable --;
         }
         // on repermet le joueur de passer au prochain tour
         document.getElementById("next-turn").disabled = false;
     }
     refreshRemainingTurn();
+    untapCards();
     // playersBuildings est un tableau qui contient tout les types de batiments du joueur
     window.playerBuildings = window.playerBuildingsProd.concat(window.playerBuildingsDip, window.playerBuildingsFood);
     
-    // boucle de jeu
-    if (window.currentTurnAvailable > 0 && (window.shuffleDeck.length > 0 && window.playerHand.length > 0)) {
+    if (window.currentTurnAvailable > 0 && window.playerHand.length > 0) {
         // on initialise le batiment posables ce tour
         window.buildingFree = true;
         refreshPlayerHand();
@@ -327,6 +338,4 @@ function turn() {
 
 initialiseHand();
 
-// TODO : faire une fonction qui permet de faire jouer les députés
-// TODO : fix le bug de la carte qui n'a pu de description une fois qu'elle a été jouée
 // document.getElementById("print").innerHTML = '<h1>Hello World</h1>';
