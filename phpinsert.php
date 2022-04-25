@@ -33,8 +33,16 @@
 	<input type="text"name="deckdeck" required placeholder="ID Deck"/>
 	<input type="submit" name="submitbtdeck" value="PUSH !!!!"/>
 	</form>
+	<br><br><br>
+	<form action="" method="POST">
+	<label>Create Deck : </label>
+	<input type="text"name="newdeckname" required placeholder="Nom du deck"/>
+	<input type="text"name="newdeckdirig" required placeholder="ID DIRIG"/>
+	<input type="submit" name="submitbtnewdeck" value="PUSH !!!!"/>
+	</form>
 	<?php
 	    // variables recup du form pour les inserer dans la database
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$card_name = $_POST['cardname'];
 		$card_type = $_POST['cardtype'];
 		$card_cost = $_POST['cardcost'];
@@ -45,6 +53,10 @@
 		//------------------------
 		$deck_cardid = $_POST['deckcard'];
 		$deck_deckid = $_POST['deckdeck'];
+		//------------------------
+		$newdeckname = $_POST['newdeckname'];
+		$newdeckdirig = $_POST['newdeckdirig'];
+	}
 
 		// pour communiquer avec la database en question
 		$servername = "drimtim.wstr.fr";
@@ -79,6 +91,14 @@
 		if (isset($_POST['submitbtdeck'])) {
 			$sql = "INSERT INTO app_carte (rel_id,card_id,deck_id)
 			SELECT id,'$deck_cardid','$deck_deckid' FROM (SELECT COUNT('rel_id') AS id FROM app_carte) as dt;";
+			$conn->query($sql);
+			$conn->close();
+			header('Location: '.$_SERVER["PHP_SELF"], true, 303);
+		}
+		// create new deck
+		if (isset($_POST['submitbtnewdeck'])) {
+			$sql = "INSERT INTO deck (deck_id,name,dirig_id)
+			SELECT id,'$newdeckname','$newdeckdirig' FROM (SELECT COUNT('deck_id') AS id FROM deck) as dt;";
 			$conn->query($sql);
 			$conn->close();
 			header('Location: '.$_SERVER["PHP_SELF"], true, 303);

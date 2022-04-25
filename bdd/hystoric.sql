@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 07 avr. 2022 à 11:41
--- Version du serveur : 10.4.22-MariaDB
--- Version de PHP : 8.0.13
+-- Généré le : mer. 20 avr. 2022 à 14:23
+-- Version du serveur :  10.4.17-MariaDB
+-- Version de PHP : 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,8 +39,13 @@ CREATE TABLE `app_carte` (
 
 INSERT INTO `app_carte` (`rel_id`, `card_id`, `deck_id`) VALUES
 (0, 0, 0),
-(1, 1, 0),
-(2, 2, 0);
+(1, 0, 0),
+(2, 0, 0),
+(3, 1, 0),
+(4, 1, 0),
+(5, 4, 0),
+(6, 6, 0),
+(7, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -53,17 +58,30 @@ CREATE TABLE `carte` (
   `name` text NOT NULL,
   `type` int(11) NOT NULL,
   `cost` int(11) NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `onPlay` int(11) DEFAULT NULL,
+  `onTap` int(11) DEFAULT NULL,
+  `eachTurn` int(11) DEFAULT NULL,
+  `onDeath` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `carte`
 --
 
-INSERT INTO `carte` (`card_id`, `name`, `type`, `cost`, `description`) VALUES
-(0, 'Leaunnie', 0, 0, 'Boloss SQL'),
-(1, 'Adr1', 0, 0, 'Boloss Codage'),
-(2, 'Voktri', 0, 0, 'Boloss Graphique');
+INSERT INTO `carte` (`card_id`, `name`, `type`, `cost`, `description`, `onPlay`, `onTap`, `eachTurn`, `onDeath`) VALUES
+(0, 'Mairie', -3, 0, 'Rajoute 1 DP', NULL, NULL, NULL, NULL),
+(1, 'Usine', -2, 0, 'Rajoute 1 PP', NULL, NULL, NULL, NULL),
+(2, 'Ferme', -1, 0, 'Rajoute 1 FP', NULL, NULL, NULL, NULL),
+(3, 'lolo', 1, 0, 'slt', NULL, NULL, NULL, NULL),
+(4, 'banane', 0, 0, 'slt', NULL, NULL, NULL, NULL),
+(5, 'poire', -2, 0, 'sdezf', NULL, NULL, NULL, NULL),
+(6, 'yo', 0, 0, 'zoomer', NULL, NULL, NULL, NULL),
+(7, 'e', 0, 0, 'e', NULL, NULL, NULL, NULL),
+(8, 'bananiable', 0, 0, 'bleu', NULL, NULL, NULL, NULL),
+(9, '', 0, 0, '', NULL, NULL, NULL, NULL),
+(10, '', 0, 0, '', NULL, NULL, NULL, NULL),
+(11, 'slt', 0, 0, 'cmoi', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -82,7 +100,9 @@ CREATE TABLE `deck` (
 --
 
 INSERT INTO `deck` (`deck_id`, `name`, `dirig_id`) VALUES
-(0, 'Deck 1', 0);
+(0, 'Deck 1', 0),
+(1, 'deck wala', 2),
+(2, 'salam', 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +121,10 @@ CREATE TABLE `dirigeant` (
 --
 
 INSERT INTO `dirigeant` (`dirig_id`, `name`, `description`) VALUES
-(0, 'Jou1', 'prauféceure');
+(0, 'Jou1', 'prauféceure'),
+(1, 'grabalam linclone', 'il est ded depuis 1700 genre'),
+(2, 'Mashallah', 'walla'),
+(3, 'jeanpascal', 'dieu de fortnite');
 
 -- --------------------------------------------------------
 
@@ -131,6 +154,9 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`type_id`, `name`) VALUES
+(-3, 'Btm_Admin'),
+(-2, 'Btm_Production'),
+(-1, 'Btm_Nourriture'),
 (0, 'Député');
 COMMIT;
 
