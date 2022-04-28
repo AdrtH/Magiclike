@@ -130,14 +130,13 @@ function refreshBoard() {
     // on affiche les députés
     document.getElementById("Board").innerHTML += "<div class='Deputies' id='Deputies'><p>Vos Députés :</p></div>";
     for (let i = 0; i < window.playerDeputies.length; i++) {
-        document.getElementById("Deputies").innerHTML += "<div class='deputy' id='deputy"+i+"' onClick='useDeputy("+i+")'></div>";
-        document.getElementById("deputy"+i).innerHTML = "<p>"+window.playerDeputies[i].name+ '('+ window.playerDeputies[i].cost+')'+"</p>";
-        document.getElementById("deputy"+i).setAttribute("title", window.playerDeputies[i].description);
+        document.getElementById("Deputies").innerHTML += "<div class='deputy' id='deputy"+i+"' onClick='useDeputy("+i+")'>"+window.playerDeputies[i]['name']+ '('+ window.playerDeputies[i]['cost']+')'+"</div>";
+        document.getElementById("deputy"+i).setAttribute("title", window.playerDeputies[i]['description']);
     }
     // on affiche les batiments
     document.getElementById("Board").innerHTML += "<div class='Buildings' id='Buildings'><p>Vos Batiments :</p></div>";
     for (let i = 0; i < window.playerBuildings.length; i++) {
-        document.getElementById("Buildings").innerHTML += "<div class='building' id='building"+i+"'>"+window.playerBuildings[i]['name'] + ' (' + window.playerBuildings[i]['cost'] + ')'+"</div>";
+        document.getElementById("Buildings").innerHTML += "<div class='building' id='building"+i+"'>"+window.playerBuildings[i]['name'] + '('+ window.playerBuildings[i]['cost'] +')'+"</div>";
         document.getElementById("building"+i).setAttribute("title", window.playerBuildings[i]['description']);
     }
 }

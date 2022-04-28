@@ -25,7 +25,7 @@
 
     box-shadow: 3px 3px 3px black;
 
-    background-color: brown;
+    background-color: rgb(185, 67, 67);
     color: black;
 }
 
@@ -107,7 +107,7 @@
 
 }
 
-.deputy
+.deputy p
 {
     text-align: center;
     padding: 20px;
