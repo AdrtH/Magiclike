@@ -12,9 +12,9 @@
     <?php
         //echo "<p>deck ".$_POST['Deck']."</p>";
 
-        $servername = "drimtim.wstr.fr";
-        $username   = "drimtim";
-        $password   = "!drimtim6969#";
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
         $dbname     = "hystoric";
         $test       = "oui";
 
