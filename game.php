@@ -46,7 +46,7 @@
         }
 
         // crée une boucle qui va parcourir toutes les appartencances de carte dans le deck choisi, 
-        $query = "SELECT carte.card_id as id, carte.name as name, carte.cost as cost, carte.description as descr, carte.type as type, carte.onPlay as onPlay, carte.eachTurn as eachTurn, carte.onTap as onTap, carte.onDie as onDie
+        $query = "SELECT carte.card_id as id, carte.name as name, carte.cost as cost, carte.description as descr, carte.type as type, carte.onPlay as onPlay, carte.eachTurn as eachTurn, carte.onTap as onTap, carte.onDeath as onDie
                   FROM carte
                   INNER JOIN app_carte as app 
                   ON carte.card_id = app.card_id
