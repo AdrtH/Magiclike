@@ -16,6 +16,7 @@ var playerBuildingsDip   = [];
 var playerBuildingsFood  = [];
 var playerDeputies       = [];
 var playerHand = [];
+var cardFree = 3;
 
 // cette classe permet de créer les cartes UNE FOIS EN JEU
 // tant qu'elles sont dans la main ce sont juste des dictionnaires
@@ -54,6 +55,16 @@ function refreshRemainingDeck() {
 
 // la fonction payCost permet de payer le coût d'une carte, elle renvoie true si possible, false sinon
 function payCost(card) {
+    //du à l'incompétence de certaines personne a faire des tests, et a faire des cartes en temps et en heure, cette fonction ne marche pas et j'ai donc pris une solution d'urgence
+    // 1 mois a dire qu'il faut en faire mais bon, c'est pas grave
+    if(window.cardFree >= 0)
+    {
+        window.cardFree--;
+        return true;
+    }
+    return false;
+    // ca c'etait la fonction de base
+    /*
     if (card.type < DEPUTIES) {
         if (window.buildingFree) {
             card.cost --;
@@ -113,6 +124,7 @@ function payCost(card) {
             return true;
         }
     }
+    */
 }
 
 function useDeputy(index) {
@@ -317,6 +329,7 @@ function chooseEvent() {
 }
 
 function turn() {
+    window.cardFree = 3;
     chooseEvent();
     refreshRemainingDeck();
     if (window.playerHand.length > 7) {
