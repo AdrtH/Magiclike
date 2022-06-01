@@ -59,9 +59,9 @@
 	}
 
 		// pour communiquer avec la database en question
-		$servername = "drimtim.wstr.fr";
-		$username = "drimtim";
-		$password = "!drimtim6969#";
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
 		$dbname = "hystoric";
 
 		$conn = new mysqli($servername, $username, $password, $dbname);
