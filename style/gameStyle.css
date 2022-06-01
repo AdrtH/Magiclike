@@ -1,0 +1,133 @@
+body{
+font-family: system-ui;
+}
+#player-hand
+{
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
+    display: block;
+    width: 100%;
+    height: 30%;
+    background: url(handBG.jpg);
+    color:rgb(255, 214, 163);
+
+    border-top: 2px solid black;
+}
+.card
+{
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+    width: 110px;
+    height: 200px;
+
+    border: 2px solid black;
+
+    box-shadow: 3px 3px 3px black;
+
+    background-color: rgb(185, 67, 67);
+    color: black;
+}
+
+#remainingTurn
+{
+    position: fixed;
+    top: 3%;
+    right: 3%;
+}
+
+#nextTurn
+{
+    right: 3%;
+    bottom: 5%;
+    position: fixed;
+
+}
+
+
+#Board
+{
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    display: block;
+    width: 100%;
+    height: 70%;
+    background-image: url(BuildBG.jpg);
+}
+
+#Deputies
+{
+    position: fixed;
+    width: 100%;
+    height: 35%;
+    border-top: 2px solid black;
+}
+
+#Buildings
+{
+    top: 35%;
+    position: fixed;
+    width: 100%;
+    height: 35%;
+    border-top: 2px solid black;
+}
+
+
+#print
+{
+
+    position: fixed;
+    color: black;
+    display: block;
+    z-index: 7777;
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    top: 25%;
+    text-align: center;
+    text-shadow: 3px 3px 3px gray;
+}
+
+.building
+{
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+    width: 110px;
+    height: 200px;
+
+    border: 2px solid black;
+
+    box-shadow: 3px 3px 3px black;
+
+    background-color:  rgb(185, 67, 67);
+    color: black;
+
+}
+
+.deputy
+{
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+    width: 110px;
+    height: 200px;
+
+    border: 2px solid black;
+
+    box-shadow: 3px 3px 3px black;
+
+    background-color:  rgb(185, 67, 67);
+    color: black;
+}
+
+h1{
+    background: url(marbleBG.png);
+    border: 3px solid black;
+    box-shadow: 3px 3px 3px black;
+}

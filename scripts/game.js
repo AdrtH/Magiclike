@@ -6,6 +6,7 @@ const DOCTRINE      = 1;
 const BUILDING_PROD = -2;
 const BUILDING_FOOD = -1;
 const BUILDING_DIP  = -3;
+const EVENT_FREQUENCY = 5;
 // variables globales
 var currentTurnAvailable = DEFAULT_TURN;
 var buildingFree;
@@ -17,17 +18,17 @@ var playerDeputies       = [];
 var playerHand = [];
 
 // cette classe permet de créer les cartes UNE FOIS EN JEU
-// tant qu'elles sont dans la main ce sont juste des "listes"
+// tant qu'elles sont dans la main ce sont juste des dictionnaires
 class Card {
     constructor(name, type, cost, description, onPlay, eachTurn, onTap, onDie) {
         this.name = name;
         this.type = type;
         this.cost = cost;
         this.description = description;
-        this.onPlay = eval(onPlay);
-        this.eachTurn = eval(eachTurn);
-        this.onTap = eval(onTap);
-        this.onDie = eval(onDie);
+        this.onPlay = eval(onPlay) || function() {};
+        this.eachTurn = eval(eachTurn) || function() {};
+        this.onTap = eval(onTap) || function() {};
+        this.onDie = eval(onDie) || function() {};
         this.tapped = false;
     }
 
@@ -48,7 +49,7 @@ function refreshRemainingTurn() {
 }
 
 function refreshRemainingDeck() {
-    document.getElementById("remainingDeck").innerHTML = ("il vous reste "+window.shuffleDeck.length+" cartes dans votre deck");
+    document.getElementById("remainingDeck").innerHTML = ("Il vous reste "+window.shuffleDeck.length+" cartes dans votre deck");
 }
 
 // la fonction payCost permet de payer le coût d'une carte, elle renvoie true si possible, false sinon
@@ -130,16 +131,16 @@ function refreshBoard() {
     // on affiche les députés
     document.getElementById("Board").innerHTML += "<div class='Deputies' id='Deputies'><p>Vos Députés :</p></div>";
     for (let i = 0; i < window.playerDeputies.length; i++) {
-        document.getElementById("Deputies").innerHTML += "<div class='deputy' id='deputy"+i+"' onClick='useDeputy("+i+")'></div>";
-        document.getElementById("deputy"+i).innerHTML = "<p>"+window.playerDeputies[i].name+ '('+ window.playerDeputies[i].cost+')'+"</p>";
-        document.getElementById("deputy"+i).setAttribute("title", window.playerDeputies[i].description);
+        document.getElementById("Deputies").innerHTML += "<div class='deputy' id='deputy"+i+"' onClick='useDeputy("+i+")'>"+window.playerDeputies[i]['name']+ '('+ window.playerDeputies[i]['cost']+')'+"</div>";
+        document.getElementById("deputy"+i).setAttribute("title", window.playerDeputies[i]['description']);
     }
     // on affiche les batiments
     document.getElementById("Board").innerHTML += "<div class='Buildings' id='Buildings'><p>Vos Batiments :</p></div>";
     for (let i = 0; i < window.playerBuildings.length; i++) {
-        document.getElementById("Buildings").innerHTML += "<div class='building' id='building"+i+"'>"+window.playerBuildings[i]['name'] + ' (' + window.playerBuildings[i]['cost'] + ')'+"</div>";
+        document.getElementById("Buildings").innerHTML += "<div class='building' id='building"+i+"'>"+window.playerBuildings[i]['name'] + '('+ window.playerBuildings[i]['cost'] +')'+"</div>";
         document.getElementById("building"+i).setAttribute("title", window.playerBuildings[i]['description']);
     }
+    refreshRemainingDeck();
 }
 
 function shuffle(array) {
@@ -164,6 +165,7 @@ function pickCard() {
     let card = shuffleDeck.pop();
     // ajoute la carte au joueur
     window.playerHand.push(card);
+    refreshRemainingDeck();
 }
 
 function refreshPlayerHand() {
@@ -184,10 +186,10 @@ function refreshPlayerHand() {
         // on ajoute la carte à la div
         document.getElementById('player-hand').appendChild(card);
     }
+    refreshRemainingDeck();
 }
 
 function playCard(index) {
-    // TODO: verifier que le joueur peut bien jouer la carte en fonction de son coût (créer fonction payCost)
     // on récupère la carte à jouer et on l'instancie avec la classe Card
     let card = new Card(window.playerHand[index]['name'], window.playerHand[index]['type'], window.playerHand[index]['cost'], window.playerHand[index]['descr'], window.playerHand[index]['onPlay'], window.playerHand[index]['eachTurn'], window.playerHand[index]['onTap'], window.playerHand[index]['onDie']);
     let played = false;
@@ -249,6 +251,7 @@ function playCard(index) {
     // on rafraichit la main du joueur
     refreshBoard();
     refreshPlayerHand();
+    refreshRemainingDeck();
 }
 
 function untapCards() {
@@ -268,6 +271,7 @@ function doDeputiesEffect() {
         // on fait l'effet du députés
         window.playerDeputies[i].eachTurn();
     }
+    refreshRemainingDeck();
 }
 
 function initialiseHand() {
@@ -282,6 +286,7 @@ function discard(index) {
     window.playerHand.splice(index, 1);
     // on rafraichit la main du joueur
     refreshPlayerHand();
+    refreshRemainingDeck();
 }
 
 // change le onClick des cartes pour "discard()"
@@ -295,9 +300,25 @@ function discardCard() {
         card.attr('title', window.playerHand[i]['descr']);
         document.getElementById('player-hand').appendChild(card);
     }
+    
+}
+
+//TODO: afficher les evenement quand ils se produisent
+function chooseEvent() {
+    // on effectue un random entre 0 et EVENT_FREQUENCY
+    let random = Math.floor(Math.random() * EVENT_FREQUENCY);
+    // si le random est égal à 0
+    if (random == 0) {
+        // on choisis quel event se passe
+        let event = Math.floor(Math.random() * window.events.length);
+        // on l'effectue
+        window.events[event].fonction();
+    }
 }
 
 function turn() {
+    chooseEvent();
+    refreshRemainingDeck();
     if (window.playerHand.length > 7) {
         // on empeche le joueur de passer au prochain tour
         document.getElementById("next-turn").disabled = true;
