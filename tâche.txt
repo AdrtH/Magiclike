@@ -1,11 +1,12 @@
 lony   :
 	- Creation de la database
-	- Insertion dans la database des différentes cartes
+	- Insertion dans la database des diffï¿½rentes cartes
 Adrien :
-	- Récupération des cartes sur la database
-	- Gérer les tours dans le jeu
+	- Rï¿½cupï¿½ration des cartes sur la database
+	- Gï¿½rer les tours dans le jeu
 	- Logique du jeu
-	- Creation des cartes
+	- Aide Ã  la creation des cartes
+	- Gitmaster
 Victor :
 	- Interface Basique
 	- Creation des cartes avec recherche historique
