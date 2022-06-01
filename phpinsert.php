@@ -14,6 +14,10 @@
 	<input type="text"name="cardname" required placeholder="Nom de la carte"/>
 	<input type="text"name="cardtype" required placeholder="Type de la carte"/>
 	<input type="text"name="cardcost" required placeholder="Coût"/>
+	<input type="text"name="onplay" placeholder="onPlay"/>
+	<input type="text"name="ontap" placeholder="onTap"/>
+	<input type="text"name="eachturn" placeholder="eachTurn"/>
+	<input type="text"name="ondeath" placeholder="onDeath"/>
 	<input type="text"name="carddesc" placeholder="Description (facultatif)"/>
 	<input type="submit" name="submitbtcard" value="PUSH !!!!"/>
 	</form>
@@ -46,6 +50,10 @@
 		$card_name = $_POST['cardname'];
 		$card_type = $_POST['cardtype'];
 		$card_cost = $_POST['cardcost'];
+		$on_play = $_POST['onplay'];
+		$on_tap = $_POST['ontap'];
+		$each_turn = $_POST['eachturn'];
+		$on_death = $_POST['ondeath'];
 		$card_desc = $_POST['carddesc'];
 		//------------------------
 		$dirig_name = $_POST['dirigname'];
@@ -72,8 +80,8 @@
 		}
 		// insert la carte apres submit
 		if (isset($_POST['submitbtcard'])) {
-			$sql = "INSERT INTO carte (card_id,name,type,cost,description)
-			SELECT id,'$card_name','$card_type','$card_cost','$card_desc' FROM (SELECT COUNT('card_id') AS id FROM carte) as dt;";
+			$sql = "INSERT INTO carte (card_id,name,type,cost,description,onPlay,onTap,eachTurn,onDeath)
+			SELECT id,'$card_name','$card_type','$card_cost','$card_desc','$on_play','$on_tap','$each_turn','$on_death' FROM (SELECT COUNT('card_id') AS id FROM carte) as dt;";
 			$conn->query($sql);
 			$conn->close();
 			header('Location: '.$_SERVER["PHP_SELF"], true, 303); // empeche une recursion en "refreshant" la page

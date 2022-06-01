@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 01 juin 2022 à 15:25
+-- Généré le : mer. 01 juin 2022 à 15:38
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -54,10 +54,10 @@ CREATE TABLE `carte` (
   `type` int(11) NOT NULL,
   `cost` int(11) NOT NULL,
   `description` text NOT NULL,
-  `onPlay` text DEFAULT NULL,
-  `onTap` text DEFAULT NULL,
-  `eachTurn` text DEFAULT NULL,
-  `onDeath` text DEFAULT NULL
+  `onPlay` varchar(255) DEFAULT NULL,
+  `onTap` varchar(255) DEFAULT NULL,
+  `eachTurn` varchar(255) DEFAULT NULL,
+  `onDeath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
