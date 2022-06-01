@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 20 avr. 2022 à 14:23
+-- Généré le : mer. 01 juin 2022 à 12:46
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -40,12 +40,7 @@ CREATE TABLE `app_carte` (
 INSERT INTO `app_carte` (`rel_id`, `card_id`, `deck_id`) VALUES
 (0, 0, 0),
 (1, 0, 0),
-(2, 0, 0),
-(3, 1, 0),
-(4, 1, 0),
-(5, 4, 0),
-(6, 6, 0),
-(7, 5, 0);
+(2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -72,16 +67,7 @@ CREATE TABLE `carte` (
 INSERT INTO `carte` (`card_id`, `name`, `type`, `cost`, `description`, `onPlay`, `onTap`, `eachTurn`, `onDeath`) VALUES
 (0, 'Mairie', -3, 0, 'Rajoute 1 DP', NULL, NULL, NULL, NULL),
 (1, 'Usine', -2, 0, 'Rajoute 1 PP', NULL, NULL, NULL, NULL),
-(2, 'Ferme', -1, 0, 'Rajoute 1 FP', NULL, NULL, NULL, NULL),
-(3, 'lolo', 1, 0, 'slt', NULL, NULL, NULL, NULL),
-(4, 'banane', 0, 0, 'slt', NULL, NULL, NULL, NULL),
-(5, 'poire', -2, 0, 'sdezf', NULL, NULL, NULL, NULL),
-(6, 'yo', 0, 0, 'zoomer', NULL, NULL, NULL, NULL),
-(7, 'e', 0, 0, 'e', NULL, NULL, NULL, NULL),
-(8, 'bananiable', 0, 0, 'bleu', NULL, NULL, NULL, NULL),
-(9, '', 0, 0, '', NULL, NULL, NULL, NULL),
-(10, '', 0, 0, '', NULL, NULL, NULL, NULL),
-(11, 'slt', 0, 0, 'cmoi', NULL, NULL, NULL, NULL);
+(2, 'Ferme', -1, 0, 'Rajoute 1 FP', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -95,15 +81,6 @@ CREATE TABLE `deck` (
   `dirig_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `deck`
---
-
-INSERT INTO `deck` (`deck_id`, `name`, `dirig_id`) VALUES
-(0, 'Deck 1', 0),
-(1, 'deck wala', 2),
-(2, 'salam', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -115,16 +92,6 @@ CREATE TABLE `dirigeant` (
   `name` text NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `dirigeant`
---
-
-INSERT INTO `dirigeant` (`dirig_id`, `name`, `description`) VALUES
-(0, 'Jou1', 'prauféceure'),
-(1, 'grabalam linclone', 'il est ded depuis 1700 genre'),
-(2, 'Mashallah', 'walla'),
-(3, 'jeanpascal', 'dieu de fortnite');
 
 -- --------------------------------------------------------
 
