@@ -318,6 +318,7 @@ function chooseEvent() {
 }
 
 function turn() {
+    chooseEvent();
     refreshRemainingDeck();
     if (window.playerHand.length > 7) {
         // on empeche le joueur de passer au prochain tour
