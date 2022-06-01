@@ -1,18 +1,6 @@
 # Magiclike
 magiclike, un jeu comme magic, mais en un joueur
 
-
-
-
-
-
-
-
-
-
-
-
-
 # Principe :
 
 Ce jeu serait un jeu de cartes à la TCG en plus modeste bien sûr, la particularité de celui-ci serait que, comparé à beaucoup d’autres où plusieurs joueurs sont requis, ici le jeu est conçu pour un seul joueur.
@@ -39,20 +27,6 @@ En tant qu’obstacle il y peut y avoir aussi des événements aléatoires pour 
 # Comment le lancer :
 
 Il faut importer la base de données compris dans le fichier BDD sur un serveur mysql, sous le nom de "hystoric", ensuite lancer Apache sur le directory du jeu, choisir le deck, et commencer à jouer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Gameplay :
 
