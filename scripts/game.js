@@ -45,7 +45,8 @@ function refreshRemainingTurn() {
     // acceder à currentTurnAvailable globalement
     document.getElementById("remainingTurn").innerHTML = "Il vous reste "+window.currentTurnAvailable+" tours";
     if (window.currentTurnAvailable <= 5) {
-        document.getElementById("remainingTurn").css("color", "red");
+        //change le font color en rouge si il reste moins de 5 tours
+        document.getElementById("remainingTurn").style.color = "red";
     }
 }
 
@@ -57,7 +58,7 @@ function refreshRemainingDeck() {
 function payCost(card) {
     //du à l'incompétence de certaines personne a faire des tests, et a faire des cartes en temps et en heure, cette fonction ne marche pas et j'ai donc pris une solution d'urgence
     // 1 mois a dire qu'il faut en faire mais bon, c'est pas grave
-    if(window.cardFree >= 0)
+    if(window.cardFree > 0)
     {
         window.cardFree--;
         return true;
@@ -205,6 +206,7 @@ function playCard(index) {
     // on récupère la carte à jouer et on l'instancie avec la classe Card
     let card = new Card(window.playerHand[index]['name'], window.playerHand[index]['type'], window.playerHand[index]['cost'], window.playerHand[index]['descr'], window.playerHand[index]['onPlay'], window.playerHand[index]['eachTurn'], window.playerHand[index]['onTap'], window.playerHand[index]['onDie']);
     let played = false;
+    window.buildingFree = false;
     // si c'est un batiment
     if (card.type == BUILDING_PROD) {
         // on ajoute la carte au tableau des batiments du joueur
@@ -245,12 +247,12 @@ function playCard(index) {
             }
         }
     }
-    if (card.type == DEPUTIES) {
+    if (card.type == DEPUTIES && payCost(card.cost)) {
         // on ajoute le deputés à la liste des députés du joueur
         window.playerDeputies.push(card);
         played = true;
     }
-    if (card.type == DOCTRINE) {
+    if (card.type == DOCTRINE && payCost(card.cost)) {
         // on ajoute la doctrine à la liste des doctrines du joueur
         card.onPlay();
         played = true;
@@ -303,13 +305,13 @@ function discard(index) {
 
 // change le onClick des cartes pour "discard()"
 function discardCard() {
-    document.getElementById('player-hand').empty();
+    document.getElementById('player-hand').innerHTML = "";
     for (let i = 0; i < window.playerHand.length; i++) {
-        let card = createElement('div');
+        let card = document.createElement('div');
         card.classList.add('card');
         card.setAttribute("onclick","discard("+i+")");
-        card.html(window.playerHand[i]['name'] + ' (' + window.playerHand[i]['cost'] + ')');
-        card.attr('title', window.playerHand[i]['descr']);
+        card.innerHTML = (window.playerHand[i]['name'] + ' (' + window.playerHand[i]['cost'] + ')');
+        card.attributes = ('title', window.playerHand[i]['descr']);
         document.getElementById('player-hand').appendChild(card);
     }
     
@@ -330,13 +332,13 @@ function chooseEvent() {
 
 function turn() {
     window.cardFree = 3;
-    chooseEvent();
+    // chooseEvent();
     refreshRemainingDeck();
     if (window.playerHand.length > 7) {
         // on empeche le joueur de passer au prochain tour
-        document.getElementById("next-turn").disabled = true;
+        document.getElementById("nextTurn").disabled = true;
         // afficher un message dans le div #print
-        document.getElementById('print').html("Vous avez trop de cartes en main, vous devez en retirer jusqu'à en avoir 7, vous perderez autant de tour");
+        document.getElementById('print').innerHTML = ("Vous avez trop de cartes en main, vous devez en retirer jusqu'à en avoir 7, vous perderez autant de tour");
         while (window.playerHand.length > 7) {
             pH = window.playerHand;
             while(pH === window.playerHand) { // force le joueur à retirer une carte à la fois
@@ -345,19 +347,19 @@ function turn() {
             window.currentTurnAvailable --;
         }
         // on repermet le joueur de passer au prochain tour
-        document.getElementById("next-turn").disabled = false;
+        document.getElementById("nextTurn").disabled = false;
     }
     refreshRemainingTurn();
     untapCards();
+    pickCard();
+    refreshPlayerHand();
+    doDeputiesEffect();
     // playersBuildings est un tableau qui contient tout les types de batiments du joueur
     window.playerBuildings = window.playerBuildingsProd.concat(window.playerBuildingsDip, window.playerBuildingsFood);
     
     if (window.currentTurnAvailable > 0 && window.playerHand.length > 0) {
         // on initialise le batiment posables ce tour
         window.buildingFree = true;
-        refreshPlayerHand();
-        pickCard();
-        doDeputiesEffect();
         window.currentTurnAvailable --;
     } else if (window.currentTurnAvailable <= 0) {
         // on affiche une partie perdue
